@@ -7,6 +7,9 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    aaptOptions{
+        noCompress "tflite"
+    }
     defaultConfig {
         applicationId "com.example.sintage"
         minSdkVersion 19
