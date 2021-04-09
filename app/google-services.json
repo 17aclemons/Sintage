@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292052653987",
+    "project_id": "sintage-48ab5",
+    "storage_bucket": "sintage-48ab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292052653987:android:6f796edb3bc77cdb246c16",
+        "android_client_info": {
+          "package_name": "com.example.sintage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292052653987-ju3bb9k61s47bhg58m4mu6ke4rq257lr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx6BIW5Il9vZEcHpm4w12fk5lRgi9SQ6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292052653987-ju3bb9k61s47bhg58m4mu6ke4rq257lr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sintage">
-        <activity android:name=".Achievements"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".Achievements" />
         <activity android:name=".PhotoRecognizer" />
         <activity android:name=".MainActivity">
             <intent-filter>
