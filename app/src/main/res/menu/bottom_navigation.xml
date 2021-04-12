@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_white_baseline_portrait_24"
+        android:title="Profile" />
+    <item
+        android:id="@+id/nav_collection"
+        android:icon="@drawable/ic_white_baseline_wine_bar_24"
+        android:title="Collection" />
+
+    <item
+        android:id="@+id/nav_scan"
+        android:icon="@drawable/ic_white_baseline_camera_24"
+        android:title="Scan" />
+</menu>

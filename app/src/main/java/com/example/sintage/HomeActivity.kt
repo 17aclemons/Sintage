@@ -1,12 +1,14 @@
 package com.example.sintage
 
+import android.R
 import android.content.DialogInterface
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -17,11 +19,22 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(com.example.sintage.R.layout.activity_home)
 
-        var test = findViewById<TextView>(R.id.testTV)
-        test.text = "Hello, " + auth.currentUser.displayName
+        //val bottomNav = findViewById<BottomNavigationItemView>(R.id.bottom_navigation)
     }
+
+//    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+//        var selectedFragment: Fragment? = null
+//        when (item.itemId) {
+//            R.id.nav_profile -> selectedFragment = HomeFragment()
+//            R.id.nav_collection -> selectedFragment = CollectionFragment()
+//            R.id.nav_scan -> selectedFragment = SearchFragment()
+//        }
+//        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+//                selectedFragment).commit()
+//        true
+//    }
 
     override fun onBackPressed() {
         lateinit var auth: FirebaseAuth
