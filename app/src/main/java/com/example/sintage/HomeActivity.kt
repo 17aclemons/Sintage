@@ -1,53 +1,39 @@
 package com.example.sintage
 
-import android.R
-import android.content.DialogInterface
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.view.MenuItem
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
+import androidx.annotation.NonNull
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-
 
 class HomeActivity : AppCompatActivity() {
     lateinit var photo:Button
     lateinit var auth: FirebaseAuth
 
+    val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        var selectedFragment: Fragment = CollectionFragment()
+        //was null? idk
+        when (item.itemId) {
+            R.id.nav_collection -> selectedFragment = CollectionFragment()
+            R.id.nav_scan -> selectedFragment = ScanFragment()
+            R.id.nav_profile -> selectedFragment = ProfileFragment()
+        }
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+        true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        auth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
-        setContentView(com.example.sintage.R.layout.activity_home)
+        setContentView(R.layout.activity_home)
 
-        //val bottomNav = findViewById<BottomNavigationItemView>(R.id.bottom_navigation)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav.setOnNavigationItemSelectedListener(navListener)
     }
 
-//    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-//        var selectedFragment: Fragment? = null
-//        when (item.itemId) {
-//            R.id.nav_profile -> selectedFragment = HomeFragment()
-//            R.id.nav_collection -> selectedFragment = CollectionFragment()
-//            R.id.nav_scan -> selectedFragment = SearchFragment()
-//        }
-//        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-//                selectedFragment).commit()
-//        true
-//    }
-
-    override fun onBackPressed() {
-        lateinit var auth: FirebaseAuth
-
-        var alert = AlertDialog.Builder(this)
-        alert.setTitle("Loging out")
-        alert.setMessage("You are about to log out. Are you sure?")
-        alert.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int ->
-            auth.signOut()
-//            startActivity(Intent(this, MainActivity::class.java))
-            finish() // ask the user before they close the app c:
-        })
-        alert.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
-        alert.show()
-    }
 }

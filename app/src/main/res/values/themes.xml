@@ -3,8 +3,8 @@
     <style name="Theme.Sintage" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item> <!-- was @color/purple_500 -Nik -->
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/sintage_red</item>
+        <item name="colorOnPrimary">@color/sintage_red_light</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -31,5 +31,14 @@
         <item name="colorAccent">#ffffff</item>
         <item name="android:textColorHint">#ffffff</item>
     </style>
+
+    <style name="Theme.Sintage.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Sintage.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Sintage.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

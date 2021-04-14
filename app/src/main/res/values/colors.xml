@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="sintage_red">#760000</color>
+    <color name="sintage_red_light">#A30000</color>
 </resources>
