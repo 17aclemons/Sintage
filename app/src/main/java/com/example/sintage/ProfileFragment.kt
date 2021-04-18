@@ -42,21 +42,33 @@ class ProfileFragment : Fragment() {
 
         var startButton = view.findViewById<Button>(R.id.testyboi)
         var userDisplay = view.findViewById<TextView>(R.id.userDisplay)
-        var ach1text = view.findViewById<TextView>(R.id.achivement1text)
+        var ach1text = view.findViewById<TextView>(R.id.achievement1text)
         var ach2text = view.findViewById<TextView>(R.id.achievement2text)
         var ach3text = view.findViewById<TextView>(R.id.achievement3text)
         var ach1image = view.findViewById<ImageView>(R.id.ach1image)
         var ach2image = view.findViewById<ImageView>(R.id.ach2image)
         var ach3image = view.findViewById<ImageView>(R.id.ach3image)
+        var ach1icon = view.findViewById<ImageView>(R.id.wineIcon1)
+        var ach2icon = view.findViewById<ImageView>(R.id.wineIcon2)
+        var ach3icon = view.findViewById<ImageView>(R.id.wineIcon3)
+
 
         ach1image.setVisibility(View.INVISIBLE)
         ach2image.setVisibility(View.INVISIBLE)
         ach3image.setVisibility(View.INVISIBLE)
+        ach1icon.setVisibility(View.INVISIBLE)
+        ach2icon.setVisibility(View.INVISIBLE)
+        ach3icon.setVisibility(View.INVISIBLE)
 
         startButton.setOnClickListener {
             ach1image.setVisibility(View.VISIBLE)
             ach2image.setVisibility(View.VISIBLE)
             ach3image.setVisibility(View.VISIBLE)
+
+            ach1icon.setVisibility(View.VISIBLE)
+            ach2icon.setVisibility(View.VISIBLE)
+            ach3icon.setVisibility(View.VISIBLE)
+
 
             ach1text.setText("${achievement1.goal}\nXP:${achievement1.xp}")
             ach2text.setText("${achievement2.goal}\nXP:${achievement2.xp}")

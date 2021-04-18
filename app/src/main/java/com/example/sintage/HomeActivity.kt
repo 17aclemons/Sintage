@@ -1,5 +1,6 @@
 package com.example.sintage
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.MenuItem
@@ -18,10 +19,14 @@ class HomeActivity : AppCompatActivity() {
 
     val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var selectedFragment: Fragment = CollectionFragment()
+        var flag = false
         //was null? idk
         when (item.itemId) {
             R.id.nav_collection -> selectedFragment = CollectionFragment()
-            R.id.nav_scan -> selectedFragment = ScanFragment()
+            R.id.nav_scan -> {
+                //selectedFragment = ScanFragment()
+                startActivity(Intent(this, UploadActivity::class.java))
+            }
             R.id.nav_profile -> selectedFragment = ProfileFragment()
         }
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()

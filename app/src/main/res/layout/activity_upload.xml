@@ -2,28 +2,28 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wood_bg"
-    tools:context=".ScanFragment">
+    tools:context=".UploadActivity">
+
 
     <ImageView
         android:id="@+id/imageView"
+        android:layout_width="379dp"
+        android:layout_height="383dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="379dp"
-        android:layout_height="383dp"
-        android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/pfp350" />
 
     <Button
         android:id="@+id/upload"
         android:layout_width="149dp"
         android:layout_height="56dp"
-        android:text="button"
+        android:text="Upload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,40 +40,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/pred1"
-        android:layout_width="95dp"
-        android:layout_height="78dp"
-        android:text="TextView"
+    <Button
+        android:id="@+id/backHome"
+        android:layout_width="83dp"
+        android:layout_height="37dp"
+        android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.148" />
 
     <TextView
-        android:id="@+id/pred2"
-        android:layout_width="80dp"
-        android:layout_height="73dp"
+        android:id="@+id/test"
+        android:layout_width="148dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:textColor="@color/white"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toEndOf="@+id/pred1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
-
-    <TextView
-        android:id="@+id/pred3"
-        android:layout_width="88dp"
-        android:layout_height="68dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toEndOf="@+id/pred2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

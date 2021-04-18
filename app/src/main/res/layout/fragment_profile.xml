@@ -103,37 +103,79 @@
         app:layout_constraintTop_toBottomOf="@+id/ach2image" />
 
     <TextView
-        android:id="@+id/achivement1text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/achievement1text"
+        android:layout_width="287dp"
+        android:layout_height="53dp"
         android:text=""
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/ach1image"
         app:layout_constraintEnd_toEndOf="@+id/ach1image"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="@+id/ach1image"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.58" />
 
     <TextView
         android:id="@+id/achievement2text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="53dp"
         android:text=""
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/ach2image"
         app:layout_constraintEnd_toEndOf="@+id/ach2image"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="@+id/ach2image"
         app:layout_constraintTop_toTopOf="@+id/ach2image" />
 
     <TextView
         android:id="@+id/achievement3text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="53dp"
         android:text=""
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/ach3image"
         app:layout_constraintEnd_toEndOf="@+id/ach3image"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="@+id/ach3image"
         app:layout_constraintTop_toTopOf="@+id/ach3image" />
 
+    <ImageView
+        android:id="@+id/wineIcon1"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_red_baseline_wine_bar_24"
+        app:layout_constraintBottom_toBottomOf="@+id/ach1image"
+        app:layout_constraintEnd_toStartOf="@+id/achievement1text"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ach1image"
+        app:layout_constraintTop_toTopOf="@+id/ach1image"
+        app:layout_constraintVertical_bias="0.552" />
+
+    <ImageView
+        android:id="@+id/wineIcon2"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_red_baseline_wine_bar_24"
+        app:layout_constraintBottom_toBottomOf="@+id/ach2image"
+        app:layout_constraintEnd_toStartOf="@+id/achievement2text"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ach2image"
+        app:layout_constraintTop_toTopOf="@+id/ach2image"
+        app:layout_constraintVertical_bias="0.552" />
+
+    <ImageView
+        android:id="@+id/wineIcon3"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_red_baseline_wine_bar_24"
+        app:layout_constraintBottom_toBottomOf="@+id/ach3image"
+        app:layout_constraintEnd_toStartOf="@+id/achievement3text"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ach3image"
+        app:layout_constraintTop_toTopOf="@+id/ach3image"
+        app:layout_constraintVertical_bias="0.552" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
