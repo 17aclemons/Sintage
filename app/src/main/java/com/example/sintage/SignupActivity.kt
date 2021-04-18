@@ -25,7 +25,7 @@ class SignupActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         var constraintLayout = findViewById<ConstraintLayout>(R.id.container)
-        var tvTimeMsg = findViewById<TextView>(R.id.SU_time_msg)
+        var tvTimeMsg = findViewById<TextView>(R.id.userDisplay)
         var timeOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         if(timeOfDay >= 0 && timeOfDay < 12){
