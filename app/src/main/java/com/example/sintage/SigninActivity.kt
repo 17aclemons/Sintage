@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class SigninActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class SigninActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
         auth = FirebaseAuth.getInstance()
+        var db = FirebaseFirestore.getInstance()
 
         var constraintLayout = findViewById<ConstraintLayout>(R.id.container)
         var tvTimeMsg = findViewById<TextView>(R.id.SI_time_msg)
@@ -62,7 +64,8 @@ class SigninActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email.text.toString(), pass.text.toString())
                 .addOnCompleteListener {
                     if(it.isSuccessful){
-                    startActivity(Intent(this, HomeActivity::class.java))
+
+                        startActivity(Intent(this, HomeActivity::class.java))
                     } else {
                         Toast.makeText(this, "Invalid email/password", Toast.LENGTH_SHORT).show()
                     }

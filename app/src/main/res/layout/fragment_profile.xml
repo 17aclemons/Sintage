@@ -14,12 +14,13 @@
         android:id="@+id/testyboi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="pleasegod"
+        android:text="View Daily Achievements"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.636" />
 
     <ImageView
         android:id="@+id/userAvitar"
@@ -66,7 +67,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
-        android:id="@+id/midAchievement"
+        android:id="@+id/ach2image"
         android:layout_width="380dp"
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
@@ -75,10 +76,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topAchievement" />
+        app:layout_constraintTop_toBottomOf="@+id/ach1image" />
 
     <ImageView
-        android:id="@+id/topAchievement"
+        android:id="@+id/ach1image"
         android:layout_width="380dp"
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
@@ -90,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <ImageView
-        android:id="@+id/botAchievement"
+        android:id="@+id/ach3image"
         android:layout_width="380dp"
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
@@ -99,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/midAchievement" />
+        app:layout_constraintTop_toBottomOf="@+id/ach2image" />
 
     <TextView
         android:id="@+id/achivement1text"
@@ -107,9 +108,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/topAchievement"
-        app:layout_constraintEnd_toEndOf="@+id/topAchievement"
-        app:layout_constraintStart_toStartOf="@+id/topAchievement"
+        app:layout_constraintBottom_toBottomOf="@+id/ach1image"
+        app:layout_constraintEnd_toEndOf="@+id/ach1image"
+        app:layout_constraintStart_toStartOf="@+id/ach1image"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
@@ -118,10 +119,10 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midAchievement"
-        app:layout_constraintEnd_toEndOf="@+id/midAchievement"
-        app:layout_constraintStart_toStartOf="@+id/midAchievement"
-        app:layout_constraintTop_toTopOf="@+id/midAchievement" />
+        app:layout_constraintBottom_toBottomOf="@+id/ach2image"
+        app:layout_constraintEnd_toEndOf="@+id/ach2image"
+        app:layout_constraintStart_toStartOf="@+id/ach2image"
+        app:layout_constraintTop_toTopOf="@+id/ach2image" />
 
     <TextView
         android:id="@+id/achievement3text"
@@ -129,10 +130,10 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/botAchievement"
-        app:layout_constraintEnd_toEndOf="@+id/botAchievement"
-        app:layout_constraintStart_toStartOf="@+id/botAchievement"
-        app:layout_constraintTop_toTopOf="@+id/botAchievement" />
+        app:layout_constraintBottom_toBottomOf="@+id/ach3image"
+        app:layout_constraintEnd_toEndOf="@+id/ach3image"
+        app:layout_constraintStart_toStartOf="@+id/ach3image"
+        app:layout_constraintTop_toTopOf="@+id/ach3image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
