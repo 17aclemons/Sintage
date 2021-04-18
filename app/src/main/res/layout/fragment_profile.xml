@@ -14,10 +14,12 @@
         android:id="@+id/testyboi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="pleasegod"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/userAvitar"
@@ -69,6 +71,7 @@
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/achievement_box"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +82,7 @@
         android:layout_width="380dp"
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
+        android:visibility="visible"
         android:src="@drawable/achievement_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -90,11 +94,45 @@
         android:layout_width="380dp"
         android:layout_height="116dp"
         android:layout_marginTop="16dp"
+        android:visibility="visible"
         android:src="@drawable/achievement_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/midAchievement" />
+
+    <TextView
+        android:id="@+id/achivement1text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/topAchievement"
+        app:layout_constraintEnd_toEndOf="@+id/topAchievement"
+        app:layout_constraintStart_toStartOf="@+id/topAchievement"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/achievement2text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/midAchievement"
+        app:layout_constraintEnd_toEndOf="@+id/midAchievement"
+        app:layout_constraintStart_toStartOf="@+id/midAchievement"
+        app:layout_constraintTop_toTopOf="@+id/midAchievement" />
+
+    <TextView
+        android:id="@+id/achievement3text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/botAchievement"
+        app:layout_constraintEnd_toEndOf="@+id/botAchievement"
+        app:layout_constraintStart_toStartOf="@+id/botAchievement"
+        app:layout_constraintTop_toTopOf="@+id/botAchievement" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
