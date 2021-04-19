@@ -68,7 +68,7 @@ class UploadActivity : AppCompatActivity() {
                 if (!correct){
                     var correctAlert = AlertDialog.Builder(this, R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog)
                     correctAlert.setTitle("Edit label")
-                    correctAlert.setMessage("Correct your shit")
+                    correctAlert.setMessage("Correct your label")
                     correctAlert.setView(editText)
                     correctAlert.setPositiveButton("Submit", { dialogInterface: DialogInterface, i: Int ->
                         wine = editText.text.toString()

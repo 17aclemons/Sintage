@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
         var ach3icon = view.findViewById<ImageView>(R.id.wineIcon3)
         var progBar = view.findViewById<ProgressBar>(R.id.achProgressBar)
 
-        levelDisplay.setText("Achievements")
+        levelDisplay.setText("User Profile")
 
         ach1image.setVisibility(View.INVISIBLE)
         ach2image.setVisibility(View.INVISIBLE)
@@ -259,9 +259,9 @@ class ProfileFragment : Fragment() {
 
 
     fun getDateSeed(): Int {
-        var year = Calendar.getInstance().get(Calendar.YEAR)
-        var month = Calendar.getInstance().get(Calendar.MONTH)
-        var day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        val year = Calendar.getInstance().get(Calendar.YEAR)
+        val month = Calendar.getInstance().get(Calendar.MONTH)
+        val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
         return (year * 100) + (month * 10) + (day * 1)
     }
