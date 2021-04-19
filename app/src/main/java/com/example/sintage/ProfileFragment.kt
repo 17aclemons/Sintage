@@ -103,17 +103,18 @@ class ProfileFragment : Fragment() {
         super.onCreate(savedInstanceState)
         var db = FirebaseFirestore.getInstance()
 
-        if(auth.currentUser != null){
-            db.collection("users_xp").get().addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    for (document in task.result!!){
-                        if(auth.currentUser?.uid.toString().equals(document.data["UID"].toString())){
-                            userProg = UserProgress(document.data["UID"].toString(), document.data["uXP"].toString().toInt())
-                        }
-                    }
-                }
-            }
-        }
+//        if(auth.currentUser != null){
+//            db.collection("users_xp").get().addOnCompleteListener { task ->
+//                if(task.isSuccessful){
+//                    for (document in task.result!!){
+//                        if(auth.currentUser?.uid.toString().equals(document.data["UID"].toString())){
+//                            userProg = UserProgress(document.data["uXP"].toString().toInt())
+//                            //                            userProg = UserProgress(document.data["UID"].toString(), document.data["uXP"].toString().toInt())
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
 
         var todaysRand : List<Int>
@@ -155,6 +156,7 @@ class ProfileFragment : Fragment() {
                     for (document in task.result!!){
                         userScannedCount += document.data!!["count"].toString().toInt()
                     }
+                    userProg = UserProgress(userScannedCount)
                     achievement1 = CountAchievement(userScannedCount, userProg)
                 }
             }
@@ -207,34 +209,35 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    class UserProgress(o_uid: String, cXP: Int){
+    class UserProgress(scannedCount: Int){ //o_uid: String,
 
-        var uid : String = ""
-        var db = FirebaseFirestore.getInstance()
-        var totalXP : Int = 1
+//        var uid : String = ""
+//        var db = FirebaseFirestore.getInstance()
+//        var totalXP : Int = 1
         var currentXP : Int = 1
         var currentLevel : Int = 1
+        var count : Int = 0
 
         init{
-            uid = o_uid
-
-            totalXP = cXP
-            currentXP = cXP
+//            uid = o_uid
+            count = scannedCount
             currentLevel = 1
+            currentXP = scannedCount * 50
 
-            while(currentXP > 200){
+            while (currentXP > 200){
                 currentLevel++
                 currentXP = currentXP - 200
             }
+
         }
 
         fun add(xp: Int){
-            totalXP += xp
+//            totalXP += xp
 
             var userXP : MutableMap<String, Any?> = HashMap()
-            userXP["UID"] = uid
-            userXP["uXP"] = totalXP
-            db.collection("users").document(uid).set(userXP)
+//            userXP["UID"] = uid
+//            userXP["uXP"] = totalXP
+//            db.collection("users").document(uid).set(userXP)
 
             currentXP = currentXP + xp
             if(currentXP > 200){

@@ -47,6 +47,7 @@ class SigninActivity : AppCompatActivity() {
             //night
             tvTimeMsg.text = "Good Night"
             constraintLayout.setBackgroundResource(R.drawable.wine_bg_2)
+
         }
 
         var signin = findViewById<Button>(R.id.SI_signin)
