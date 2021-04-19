@@ -33,22 +33,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/achProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="239dp"
         android:layout_height="23dp"
         android:layout_marginTop="12dp"
+        android:max="200"
+        android:progress="1"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/browser_actions_bg_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/levelDisplay" />
 
     <TextView
-        android:id="@+id/userDisplay"
+        android:id="@+id/levelDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/gotham"
-        android:text="User"
+        android:text="Level 1"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#ffffff"
         android:textSize="30sp"

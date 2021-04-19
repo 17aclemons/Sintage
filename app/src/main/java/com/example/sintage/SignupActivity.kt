@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class SignupActivity : AppCompatActivity() {
@@ -23,9 +24,9 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
         auth = FirebaseAuth.getInstance()
-
+        val db = FirebaseFirestore.getInstance()
         var constraintLayout = findViewById<ConstraintLayout>(R.id.container)
-        var tvTimeMsg = findViewById<TextView>(R.id.userDisplay)
+        var tvTimeMsg = findViewById<TextView>(R.id.levelDisplay)
         var timeOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         if(timeOfDay >= 0 && timeOfDay < 12){
@@ -79,12 +80,19 @@ class SignupActivity : AppCompatActivity() {
 
                         .addOnCompleteListener{
                             if(it.isSuccessful){
-                                var user = auth.getCurrentUser()
-                                //TODO: save displayName with First and Last name.
+                                var uItem : MutableMap<String, Any?> = HashMap()
+                                uItem["UID"] = auth.getCurrentUser().uid.toString()
+                                uItem["email"] = email.text.toString()
+                                uItem["firstName"] = firstName.text.toString()
+                                uItem["lastName"] = lastName.text.toString()
+                                uItem["uXP"] = "1"
+                                db.collection("users").add(uItem)
+
                                 Toast.makeText(this, "User successfully created!", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this, HomeActivity::class.java))
                             }else Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
                         }
+
             }else if(!emailMatch) {
                 Toast.makeText(this, "Invalid email", Toast.LENGTH_SHORT).show()
             }else if (!pwdFormat){

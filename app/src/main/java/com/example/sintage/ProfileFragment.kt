@@ -1,26 +1,13 @@
 package com.example.sintage
 
-import android.media.Image
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.view.isVisible
-import com.google.firebase.FirebaseError
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.ZoneId.from
-import java.time.ZoneId.systemDefault
 import java.util.*
 import kotlin.random.Random
 
@@ -31,6 +18,7 @@ class ProfileFragment : Fragment() {
     lateinit var achievement2 : RandAchievement
     lateinit var achievement3 : RandAchievement
     lateinit var auth: FirebaseAuth
+    lateinit var userProg : UserProgress
 
     // ↓ here!!!
     override fun onCreateView(
@@ -41,7 +29,7 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
         var startButton = view.findViewById<Button>(R.id.testyboi)
-        var userDisplay = view.findViewById<TextView>(R.id.userDisplay)
+        var levelDisplay = view.findViewById<TextView>(R.id.levelDisplay)
         var ach1text = view.findViewById<TextView>(R.id.achievement1text)
         var ach2text = view.findViewById<TextView>(R.id.achievement2text)
         var ach3text = view.findViewById<TextView>(R.id.achievement3text)
@@ -51,7 +39,9 @@ class ProfileFragment : Fragment() {
         var ach1icon = view.findViewById<ImageView>(R.id.wineIcon1)
         var ach2icon = view.findViewById<ImageView>(R.id.wineIcon2)
         var ach3icon = view.findViewById<ImageView>(R.id.wineIcon3)
+        var progBar = view.findViewById<ProgressBar>(R.id.achProgressBar)
 
+        levelDisplay.setText("Achievements")
 
         ach1image.setVisibility(View.INVISIBLE)
         ach2image.setVisibility(View.INVISIBLE)
@@ -60,7 +50,10 @@ class ProfileFragment : Fragment() {
         ach2icon.setVisibility(View.INVISIBLE)
         ach3icon.setVisibility(View.INVISIBLE)
 
+
         startButton.setOnClickListener {
+            progBar.progress = userProg.currentXP
+            levelDisplay.setText("Level: ${userProg.currentLevel.toString()}")
             ach1image.setVisibility(View.VISIBLE)
             ach2image.setVisibility(View.VISIBLE)
             ach3image.setVisibility(View.VISIBLE)
@@ -86,6 +79,8 @@ class ProfileFragment : Fragment() {
 
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        userProg = UserProgress() //TODO: NIKKI
+
         var db = FirebaseFirestore.getInstance()
         var todaysRand : List<Int>
 
@@ -124,9 +119,9 @@ class ProfileFragment : Fragment() {
                 var userScannedCount = 0
                 if (task.isSuccessful){
                     for (document in task.result!!){
-                        userScannedCount += document.data!!["scannedCount"].toString().toInt()
+                        userScannedCount += document.data!!["count"].toString().toInt()
                     }
-                    achievement1 = CountAchievement(userScannedCount)
+                    achievement1 = CountAchievement(userScannedCount, userProg)
                 }
             }
 
@@ -143,7 +138,7 @@ class ProfileFragment : Fragment() {
         var achieved = false
     }
 
-    class CountAchievement(old: Int){
+    class CountAchievement(old: Int, userProg: UserProgress){
         var goal : String = ""
         var nextGoal : Int = 1
         var scanned : Int = 0
@@ -151,19 +146,47 @@ class ProfileFragment : Fragment() {
         var achieved : Boolean = false
 
         init {
+            xp = 50
+            achieved = false
             scanned = old
             nextGoal = old
-            while (nextGoal%5 != 0){
-                nextGoal++
-            }
-            if (nextGoal == 0) {
+
+            if(nextGoal == 0){
                 nextGoal = 1
                 goal = "Scan your first wine!"
             }else{
-                goal = "Scan ${nextGoal} wines"
+                if(nextGoal == 1){
+                    nextGoal = 5
+                    userProg.add(xp)
+                }
+                while (nextGoal%5 != 0){
+                    nextGoal++
+                }
+                if(scanned == nextGoal){
+                    nextGoal = nextGoal+5
+                    userProg.add(xp)
+                }
+
+                goal = "Scan ${nextGoal} wines. Current: ${scanned}"
             }
-            xp = 50
-            achieved = false
+                //TODO:NIKKI
+        }
+    }
+
+    class UserProgress(){
+        var currentXP = 1
+        var currentLevel = 1
+
+        fun add(xp: Int){
+            currentXP = currentXP + xp
+            if(currentXP > 200){
+                currentLevel++
+                currentXP = currentXP - 200
+            }
+        }
+
+        constructor(current: Int) : this() {
+            currentXP = current
         }
     }
 

@@ -80,6 +80,7 @@ class UploadActivity : AppCompatActivity() {
 
                     }) //do nothing
                     correctAlert.setOnDismissListener {
+                        //favorite here Nikki
                         var favAlert = AlertDialog.Builder(this, R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog)
                         favAlert.setTitle("Favorite?")
                         favAlert.setMessage("Would you like to add ${wine} to your favorites?")
@@ -152,6 +153,7 @@ class UploadActivity : AppCompatActivity() {
                     }
                     correctAlert.show()
                 }else{
+                    //favorite here Nikki
                     var favAlert = AlertDialog.Builder(this, R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog)
                     favAlert.setTitle("Favorite?")
                     favAlert.setMessage("Would you like to add ${wine} to your favorites?")

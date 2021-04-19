@@ -29,7 +29,7 @@ lateinit var listAdapter : ArrayAdapter<String>
         var collectionBtn = view.findViewById<Button>(R.id.collectionButton) //all scanned
         var list = view.findViewById<ListView>(R.id.listViewer)
 
-
+        var testlist = arrayListOf<String>("one", "two", "three")
 
         favoritesBtn.setOnClickListener {
             listAdapter = ArrayAdapter(container!!.getContext(), android.R.layout.simple_list_item_1, favoriteWineList.list)
@@ -38,7 +38,7 @@ lateinit var listAdapter : ArrayAdapter<String>
         }
 
         collectionBtn.setOnClickListener {
-            listAdapter = ArrayAdapter(container!!.getContext(), android.R.layout.simple_list_item_1, favoriteWineList.list)
+            listAdapter = ArrayAdapter(container!!.getContext(), android.R.layout.simple_list_item_1, collectionWineList.list)
             list.adapter = listAdapter
         }
 
