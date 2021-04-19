@@ -1,10 +1,14 @@
 package com.example.sintage
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,7 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
-
+    lateinit var welcome : TextView
+    lateinit var logo : ImageView
     val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var selectedFragment: Fragment = CollectionFragment()
         when (item.itemId) {
@@ -29,6 +34,11 @@ class HomeActivity : AppCompatActivity() {
             R.id.nav_profile -> selectedFragment = ProfileFragment()
         }
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+        welcome = findViewById(R.id.welcome)
+        logo = findViewById(R.id.logo)
+
+        welcome.setVisibility(View.INVISIBLE)
+        logo.setVisibility(View.INVISIBLE)
         true
     }
 
@@ -36,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val db = FirebaseFirestore.getInstance()
-        var welcome = findViewById<TextView>(R.id.welcome)
+        welcome = findViewById(R.id.welcome)
         auth = FirebaseAuth.getInstance()
         var user = ""
 
@@ -45,7 +55,18 @@ class HomeActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     for (document in task.result!!){
                         if(document.data["UID"].toString().equals(auth.uid.toString())){
-                            welcome.setText("Welcome, ${document.data["firstName"].toString()} ${document.data["lastName"].toString()}")
+                            val sharedPreferences : SharedPreferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+                            //creating an editor
+                            val editor : SharedPreferences.Editor = sharedPreferences.edit()
+                            editor.apply{
+                                putString("userUID", document.data["UID"].toString())
+                                putString("userEmail", document.data["email"].toString())
+                                putString("userFirstName", document.data["firstName"].toString())
+                                putString("userLastName", document.data["lastName"].toString())
+                                putInt("userXP", document.data["uXP"].toString().toInt())
+                            }
+
+                            welcome.setText("Hello, ${document.data["firstName"].toString()}")
                         }
                     }
                 }
@@ -58,5 +79,15 @@ class HomeActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener(navListener)
 
     }
+
+//    fun getUXP() : Int{
+//        auth = FirebaseAuth.getInstance()
+//        val sharedPreferences : SharedPreferences = this.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)
+//        val savedData : String? = sharedPreferences.getString("myData", "No data found")
+//        val savedInt : Int = sharedPreferences.getInt("uXP", 1)
+//
+//
+//        return savedInt
+//    }
 
 }

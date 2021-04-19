@@ -1,5 +1,10 @@
 package com.example.sintage
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +14,7 @@ import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,8 +33,9 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-
-        var startButton = view.findViewById<Button>(R.id.testyboi)
+        auth = FirebaseAuth.getInstance()
+        var startButton = view.findViewById<Button>(R.id.viewAchievements)
+        var logOutButton = view.findViewById<Button>(R.id.logOut)
         var levelDisplay = view.findViewById<TextView>(R.id.levelDisplay)
         var ach1text = view.findViewById<TextView>(R.id.achievement1text)
         var ach2text = view.findViewById<TextView>(R.id.achievement2text)
@@ -50,6 +57,21 @@ class ProfileFragment : Fragment() {
         ach2icon.setVisibility(View.INVISIBLE)
         ach3icon.setVisibility(View.INVISIBLE)
 
+        logOutButton.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(container?.context, SigninActivity::class.java))
+            //TODO: why is text not black??
+//            var alert = AlertDialog.Builder(container?.context, R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog)
+//            alert.setTitle("Logging out")
+//            alert.setMessage("You are about to log out. Are you sure?")
+//            alert.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int ->
+//                auth.signOut()
+//            startActivity(Intent(container?.context, SigninActivity::class.java))
+//
+//            })
+//            alert.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+//            alert.show()
+        }
 
         startButton.setOnClickListener {
             progBar.progress = userProg.currentXP
@@ -68,20 +90,32 @@ class ProfileFragment : Fragment() {
             ach3text.setText("${achievement3.goal}\nXP:${achievement3.xp}")
 
             startButton.setVisibility(View.INVISIBLE)
-
+            logOutButton.setVisibility(View.INVISIBLE)
         }
 
         return view
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        userProg = UserProgress() //TODO: NIKKI
-
+        super.onCreate(savedInstanceState)
         var db = FirebaseFirestore.getInstance()
+
+        if(auth.currentUser != null){
+            db.collection("users_xp").get().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    for (document in task.result!!){
+                        if(auth.currentUser?.uid.toString().equals(document.data["UID"].toString())){
+                            userProg = UserProgress(document.data["UID"].toString(), document.data["uXP"].toString().toInt())
+                        }
+                    }
+                }
+            }
+        }
+
+
         var todaysRand : List<Int>
 
         //list of achievement IDs
@@ -173,11 +207,35 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    class UserProgress(){
-        var currentXP = 1
-        var currentLevel = 1
+    class UserProgress(o_uid: String, cXP: Int){
+
+        var uid : String = ""
+        var db = FirebaseFirestore.getInstance()
+        var totalXP : Int = 1
+        var currentXP : Int = 1
+        var currentLevel : Int = 1
+
+        init{
+            uid = o_uid
+
+            totalXP = cXP
+            currentXP = cXP
+            currentLevel = 1
+
+            while(currentXP > 200){
+                currentLevel++
+                currentXP = currentXP - 200
+            }
+        }
 
         fun add(xp: Int){
+            totalXP += xp
+
+            var userXP : MutableMap<String, Any?> = HashMap()
+            userXP["UID"] = uid
+            userXP["uXP"] = totalXP
+            db.collection("users").document(uid).set(userXP)
+
             currentXP = currentXP + xp
             if(currentXP > 200){
                 currentLevel++
@@ -185,10 +243,17 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        constructor(current: Int) : this() {
-            currentXP = current
+        fun calculateXPfromRandAchievements(scanned: Int): Int{
+            var countAchievementsEarned = scanned%5 + 1
+            var xpFromCountAchievements = countAchievementsEarned * 50
+
+            var xPfromRand = currentXP - xpFromCountAchievements
+            return xPfromRand
         }
+
     }
+
+
 
     fun getDateSeed(): Int {
         var year = Calendar.getInstance().get(Calendar.YEAR)

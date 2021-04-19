@@ -26,7 +26,7 @@
         app:menu="@menu/bottom_navigation"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
@@ -52,7 +52,7 @@
         android:layout_marginTop="365dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="236dp"
-        android:text="Welcome"
+        android:text="Hello"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp" />

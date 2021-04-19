@@ -38,7 +38,7 @@ class SigninActivity : AppCompatActivity() {
             // afternoon
             tvTimeMsg.text = "Good Afternoon"
             constraintLayout.setBackgroundResource(R.drawable.wine_bg_4)
-        } else if(timeOfDay >= 16 && timeOfDay < 12){
+        } else if(timeOfDay >= 16 && timeOfDay < 21){
             //evening
             tvTimeMsg.text = "Good Evening"
             constraintLayout.setBackgroundResource(R.drawable.wine_bg_3)

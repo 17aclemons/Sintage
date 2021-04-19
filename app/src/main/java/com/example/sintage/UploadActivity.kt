@@ -37,7 +37,6 @@ class UploadActivity : AppCompatActivity() {
         button = findViewById<Button>(R.id.upload)
         var pred = findViewById<Button>(R.id.model)
 
-        var test = findViewById<TextView>(R.id.test)
 
         back.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
@@ -75,7 +74,6 @@ class UploadActivity : AppCompatActivity() {
                         wine = editText.text.toString()
 
                         //add wine to db here!
-                        test.text = wine
                         dialogInterface.dismiss()
 
                     }) //do nothing

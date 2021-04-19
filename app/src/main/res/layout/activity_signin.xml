@@ -29,10 +29,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/myEditTextStyle"
+        android:background="@drawable/bg_button_white"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/bg_button_white"
+
         android:text="Sign In"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@id/SI_forgot_pw"

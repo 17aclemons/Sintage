@@ -37,7 +37,7 @@ class SignupActivity : AppCompatActivity() {
             // afternoon
             tvTimeMsg.text = "Good Afternoon"
             constraintLayout.setBackgroundResource(R.drawable.wine_bg_4_blurred)
-        } else if(timeOfDay >= 16 && timeOfDay < 12){
+        } else if(timeOfDay >= 16 && timeOfDay < 21){
             //evening
             tvTimeMsg.text = "Good Evening"
             constraintLayout.setBackgroundResource(R.drawable.wine_bg_3_blurred)
@@ -86,8 +86,12 @@ class SignupActivity : AppCompatActivity() {
                                 uItem["firstName"] = firstName.text.toString()
                                 uItem["lastName"] = lastName.text.toString()
                                 uItem["uXP"] = "1"
-                                db.collection("users").add(uItem)
 
+                                var xpItem : MutableMap<String, Any?> = HashMap()
+                                xpItem["UID"] = auth.getCurrentUser().uid.toString()
+                                xpItem["uXP"] = "1"
+                                db.collection("users").add(uItem)
+                                db.collection("users_xp").add(xpItem)
                                 Toast.makeText(this, "User successfully created!", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this, HomeActivity::class.java))
                             }else Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
